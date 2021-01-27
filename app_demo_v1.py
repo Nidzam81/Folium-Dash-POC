@@ -84,14 +84,14 @@ fig_status.update_layout(
 		
 #create map circle
 def circle_maker(m,x):
-    print("This is the status ",x[3])
+
     if x[3] == "OK":
         rad_var = 500
         col_var = 'blue'
     else:
         rad_var = 1000
         col_var = 'red'
-    print(x,rad_var,col_var)
+
     folium.Circle(location = [x[0],x[1]],
                  radius = rad_var,
                  color = col_var,
@@ -288,8 +288,7 @@ app.layout = dbc.Container(
 )
 
 def update_map(val,loc,tiles_var):
-    print("location ",loc)
-    print(val)
+
     if not tiles_var:
         tiles_var="Stamen toner"
 
@@ -309,8 +308,6 @@ def update_map(val,loc,tiles_var):
         new_data = data.copy()
     else:
         new_data = data[data['Location'].isin(loc)]
-    
-    print(new_data)
 
     if val == "all":
         m = folium.Map(location = [3.1910615,101.732700],
@@ -321,13 +318,10 @@ def update_map(val,loc,tiles_var):
     #Overall NG
     if val == "ov_ng":
         data_ng = new_data[new_data['Status'] == "NG"].reset_index()
-        print(data_ng)
         var_check = len(data_ng)
-        print(var_check)
         if var_check > 0:
             init_lat = data_ng['lat'][0]
             init_lon = data_ng['lon'][0]
-            print(init_lat,init_lon)
             m = folium.Map(location = [init_lat,init_lon],
                         tiles = tiles_var,
                         zoom_start = 11)            
@@ -341,13 +335,10 @@ def update_map(val,loc,tiles_var):
     #DNS NG
     if val == "dns_ng":
         data_ng = new_data[new_data['DNS Status'] == "NG"].reset_index()
-        print(data_ng)
         var_check = len(data_ng)
-        print(var_check)
         if var_check > 0:
             init_lat = data_ng['lat'][0]
             init_lon = data_ng['lon'][0]
-            print(init_lat,init_lon)
             m = folium.Map(location = [init_lat,init_lon],
                         tiles = tiles_var,
                         zoom_start = 11)            
@@ -361,13 +352,10 @@ def update_map(val,loc,tiles_var):
     #ICMP NG
     if val == "icmp_ng":
         data_ng = new_data[new_data['ICMP Status'] == "NG"].reset_index()
-        print(data_ng)
         var_check = len(data_ng)
-        print(var_check)
         if var_check > 0:
             init_lat = data_ng['lat'][0]
             init_lon = data_ng['lon'][0]
-            print(init_lat,init_lon)
             m = folium.Map(location = [init_lat,init_lon],
                         tiles =tiles_var,
                         zoom_start = 11)            
@@ -381,9 +369,7 @@ def update_map(val,loc,tiles_var):
     #SNMP NG
     if val == "snmp_ng":
         data_ng = new_data[new_data['SNMP Status'] == "NG"].reset_index()
-        print(data_ng)
         var_check = len(data_ng)
-        print(var_check)
         if var_check > 0:
             init_lat = data_ng['lat'][0]
             init_lon = data_ng['lon'][0]
@@ -401,11 +387,9 @@ def update_map(val,loc,tiles_var):
     if val == "ok":
         data_ok = new_data[new_data['Status'] == "OK"].reset_index()
         var_check = len(data_ok)
-        print(var_check)
         if var_check > 0:
             init_lat = data_ok['lat'][0]
             init_lon = data_ok['lon'][0]
-            print(init_lat,init_lon)
             m = folium.Map(location = [init_lat,init_lon],
                         tiles = tiles_var,
                         zoom_start = 11)            
@@ -433,9 +417,7 @@ def update_map(val,loc,tiles_var):
     ]
 )
 def update_list(details):
-    print("details ",details)
     if not details:
-        # raise PreventUpdate
         return html.P(), html.P(),html.P(),html.P(),html.P(), html.P(),html.P(),html.P()
     elif details[0] == "show_ng":
         status_list = data[data['Status'] == "NG"]
@@ -455,8 +437,7 @@ def update_list(details):
         title_snmp = html.P("SNMP Status NG location",style={'color': 'red', 'fontSize': 25})
 
         return ov_ng_list,dns_ng_list,icmp_ng_list,snmp_ng_list,title_ov,title_dns,title_icmp,title_snmp
-# ttr_list=[html.Li(x) for x in missed_ttr_list]
-# Output(component_id='sla-ttr', component_property='children'),
+
 if __name__ == "__main__":
     app.run_server(debug=True)
 

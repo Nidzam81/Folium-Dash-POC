@@ -10,7 +10,8 @@ import pandas as pd
 import plotly.graph_objects as go
 from dash.exceptions import PreventUpdate
 
-app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+#app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(external_stylesheets= ['https://codepen.io/chriddyp/pen/bWLwgP.css'])
 server = app.server
 
 #get data

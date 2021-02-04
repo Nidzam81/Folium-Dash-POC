@@ -1,0 +1,17 @@
+dash==1.1.1
+dash-core-components==1.1.1
+dash-html-components==1.0.0
+dash-renderer==1.0.0
+dash-table==4.1.0
+dask==2.1.0
+decorator==4.4.0
+Flask==1.1.1
+Flask-Compress==1.4.0
+gunicorn==19.9.0
+numpy==1.16.4
+pandas==0.24.2
+plotly==4.1.0
+python-dateutil==2.8.0
+folium
+json
+
